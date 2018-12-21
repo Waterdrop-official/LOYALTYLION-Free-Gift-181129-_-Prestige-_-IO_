@@ -1,0 +1,8 @@
+
+{% section 'cart-template' %}
+{% section 'recently-viewed-products' %}
+
+{% if settings.plus_free_gift_enable %}
+  {% include 'plus-free-gift-common-js' %}
+  {% section 'plus-spendx-free-gift' %}
+{% endif %} 

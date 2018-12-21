@@ -1,0 +1,25 @@
+<li class="plus-free-gift-modal__product {{ grid_item_width }}">
+  {{ product.featured_image | img_url: '300x' | img_tag }}
+  
+  <p>{{ product.title}}</p>
+  
+  <div class="plus-free-gift-modal__cart-form" data-variant-id="{{ product.first_available_variant.id }}">
+    {% if product.variants.size > 1 %}
+      <select class="plus-free-gift-modal__variant-select">
+        {% for variant in product.variants %}
+          {% if variant.available %}
+            <option value="{{ variant.id }}" {% if forloop.first %}selected="selected"{% endif %}>{{ variant.title }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    {% endif %}
+    
+    <div class="plus-free-gift-modal__add-to-cart__wrapper">
+      {% if product.available %}
+        <span class="plus-free-gift-modal__add-to-cart">{{ 'product.form.add_to_cart' | t }}</span>
+      {% else %}
+        <span class="plus-free-gift-modal__add-to-cart__sold-out">{{ 'product.form.sold_out' | t }}</span>
+      {% endif %}
+    </div>
+  </div>
+</li>   

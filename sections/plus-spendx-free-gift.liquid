@@ -1,0 +1,109 @@
+{% include 'plus-free-gift-modal', type: section.settings.plus_spendx_free_gift_selection_type %}
+ <script>
+  // Check if the cart total is over the threshold
+  var threshold = parseInt({{ section.settings.plus_spendx_free_gift_threshold | times: 100 }});
+  var cart = {{ cart | json }};
+  
+  if (cart.total_price > threshold) {
+    cartQualifies = true;
+  }
+</script>
+ {% schema %}
+  {
+    "name": "[Plus] Spend $X free gift",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Offer a free gift with a purchase over $X"
+      },
+      {
+        "type": "text",
+        "id": "plus_spendx_free_gift_threshold",
+        "label": "Cart threshold",
+        "info": "Minimum for free gift (entered in dollars)",
+        "default": "99"
+      },
+      {
+        "type": "select",
+        "id": "plus_spendx_free_gift_selection_type",
+        "label": "Free Gift selection",
+        "options": [
+          {
+            "value": "collection",
+            "label": "Collection"
+          },
+          {
+            "value": "product",
+            "label": "Product"
+          }
+        ],
+        "info": "Determines whether there will be multiple options to choose from, or just one product",
+        "default": "product"
+      },
+      {
+        "type": "paragraph",
+        "content": "Any changes made to the blocks below should be reflected in the associated script for applying the free gift discount"
+      }
+    ],
+    "blocks" : [
+      {
+        "type": "gift-collection",
+        "name": "Gift Collection",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "header",
+            "content": "Gift collection"
+          },
+          {
+            "type": "collection",
+            "id": "gift_collection",
+            "label": "Collection",
+            "info":"Collection to pull free gift products from"
+          },
+          {
+            "type": "select",
+            "id": "gift_collection_grid_width",
+            "label": "Collection grid width",
+            "info":"Number of products to show per row",
+            "options": [
+              {
+                "value": "whole",
+                "label": "1"
+              },
+              {
+                "value": "half",
+                "label": "2"
+              },
+              {
+                "value": "third",
+                "label": "3"
+              },
+              {
+                "value": "quarter",
+                "label": "4"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "gift-product",
+        "name": "Gift Product",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "header",
+            "content": "Gift product"
+          },
+          {
+            "type": "product",
+            "id": "gift_product",
+            "label": "Product",
+            "info":"Product to be offered as free gift"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}   

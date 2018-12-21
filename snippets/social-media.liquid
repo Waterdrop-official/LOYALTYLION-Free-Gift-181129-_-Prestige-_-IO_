@@ -1,0 +1,207 @@
+{%- assign social_media_count = 0 -%}
+
+{%- capture social_media -%}
+
+<style>
+
+.cdropbtn {
+    background-color: transparent;
+    padding: 0px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.cdropbtn:hover, .cdropbtn:focus {
+    
+}
+
+.cdropdown {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: center;
+}
+
+.cdropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 10px;
+    border: 1px solid #cecece;
+    bottom: 30px;
+    left: 15px;
+}
+
+.cdropdown-content a {
+    text-decoration: none;
+    padding: 5px 0;
+    display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	font-size: 12px;
+}
+  
+.cdropdown-content img {
+	margin: 0 20px 0 0;
+    max-width: 20px;
+}
+
+.cdropdown-content a:hover {}
+
+.cshow {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+min-width: 150px;
+}
+  
+img.carrowdown {
+	max-width: 12px;
+	margin: 0 0 0 10px;
+}
+  
+@media screen and (min-width: 600px) {
+  .cmobileshow {display: none;} 
+}
+  
+</style>       
+
+<div class="cdropdown cmobileshow">
+  <button id="flagsdropM" class="cdropbtn"><img src="https://cdn.shopify.com/s/files/1/0004/7310/4447/files/de_down.png?16584775794711921275"></button>
+  <div id="cmyDropdown" class="cdropdown-content">
+    
+     {% comment %}<a href="#"><img src="https://cdn.shopify.com/s/files/1/0058/5410/1602/files/uk.png?9104868499360325961"></td><td><span>English (UK)</span></a> {% endcomment %}
+    <a href="https://en.waterdrop.com"><img src="https://cdn.shopify.com/s/files/1/0058/5410/1602/files/eu.png?9104868499360325961"><span>English (EU)</span></a>
+    <a href="https://waterdrop.cz"><img src="https://cdn.shopify.com/s/files/1/0058/5410/1602/files/cz.png?9104868499360325961"><span>Czech</span></a>
+  </div>
+</div>
+
+
+  {%- if settings.social_facebook != blank -%}
+    <li class="HorizontalList__Item">
+      <a href="{{ settings.social_facebook }}" class="Link Link--primary" target="_blank" rel="noopener" aria-label="Facebook">
+        <span class="Icon-Wrapper--clickable">{%- include 'icon' with 'facebook' -%}</span>
+      </a>
+    </li>
+
+    {% assign social_media_count = social_media_count | plus: 1 %}
+  {%- endif -%}
+
+  {%- if settings.social_twitter != blank -%}
+    <li class="HorizontalList__Item">
+      <a href="{{ settings.social_twitter }}" class="Link Link--primary" target="_blank" rel="noopener" aria-label="Twitter">
+        <span class="Icon-Wrapper--clickable">{%- include 'icon' with 'twitter' -%}</span>
+      </a>
+    </li>
+
+    {% assign social_media_count = social_media_count | plus: 1 %}
+  {%- endif -%}
+
+  {%- if settings.social_instagram != blank -%}
+    <li class="HorizontalList__Item">
+      <a href="{{ settings.social_instagram }}" class="Link Link--primary" target="_blank" rel="noopener" aria-label="Instagram">
+        <span class="Icon-Wrapper--clickable">{%- include 'icon' with 'instagram' -%}</span>
+      </a>
+    </li>
+
+    {% assign social_media_count = social_media_count | plus: 1 %}
+  {%- endif -%}
+
+  {%- if settings.social_pinterest != blank -%}
+    <li class="HorizontalList__Item">
+      <a href="{{ settings.social_pinterest }}" class="Link Link--primary" target="_blank" rel="noopener" aria-label="Pinterest">
+        <span class="Icon-Wrapper--clickable">{%- include 'icon' with 'pinterest' -%}</span>
+      </a>
+    </li>
+
+    {% assign social_media_count = social_media_count | plus: 1 %}
+  {%- endif -%}
+
+  {%- if settings.social_youtube != blank -%}
+    <li class="HorizontalList__Item">
+      <a href="{{ settings.social_youtube }}" class="Link Link--primary" target="_blank" rel="noopener" aria-label="YouTube">
+        <span class="Icon-Wrapper--clickable">{%- include 'icon' with 'youtube' -%}</span>
+      </a>
+    </li>
+
+    {% assign social_media_count = social_media_count | plus: 1 %}
+  {%- endif -%}
+
+  {%- if settings.social_vimeo != blank -%}
+    <li class="HorizontalList__Item">
+      <a href="{{ settings.social_vimeo }}" class="Link Link--primary" target="_blank" rel="noopener" aria-label="Vimeo">
+        <span class="Icon-Wrapper--clickable">{%- include 'icon' with 'vimeo' -%}</span>
+      </a>
+    </li>
+
+    {% assign social_media_count = social_media_count | plus: 1 %}
+  {%- endif -%}
+
+  {%- if settings.social_linkedin != blank -%}
+    <li class="HorizontalList__Item">
+      <a href="{{ settings.social_linkedin }}" class="Link Link--primary" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <span class="Icon-Wrapper--clickable">{%- include 'icon' with 'linkedin' -%}</span>
+      </a>
+    </li>
+
+    {% assign social_media_count = social_media_count | plus: 1 %}
+  {%- endif -%}
+
+  {%- if settings.social_snapchat != blank -%}
+    <li class="HorizontalList__Item">
+      <a href="{{ settings.social_snapchat }}" class="Link Link--primary" target="_blank" rel="noopener" aria-label="SnapChat">
+        <span class="Icon-Wrapper--clickable">{%- include 'icon' with 'snapchat' -%}</span>
+      </a>
+    </li>
+
+    {% assign social_media_count = social_media_count | plus: 1 %}
+  {%- endif -%}
+
+  {%- if settings.social_tumblr != blank -%}
+    <li class="HorizontalList__Item">
+      <a href="{{ settings.social_tumblr }}" class="Link Link--primary" target="_blank" rel="noopener" aria-label="Tumblr">
+        <span class="Icon-Wrapper--clickable">{%- include 'icon' with 'tumblr' -%}</span>
+      </a>
+    </li>
+
+    {% assign social_media_count = social_media_count | plus: 1 %}
+  {%- endif -%}
+
+  {%- if settings.social_google_plus != blank -%}
+    <li class="HorizontalList__Item">
+      <a href="{{ settings.social_google_plus }}" class="Link Link--primary" target="_blank" rel="noopener" aria-label="Google Plus">
+        <span class="Icon-Wrapper--clickable">{%- include 'icon' with 'google-plus' -%}</span>
+      </a>
+    </li>
+
+    {% assign social_media_count = social_media_count | plus: 1 %}
+  {%- endif -%}
+
+  {%- if settings.social_fancy != blank -%}
+    <li class="HorizontalList__Item">
+      <a href="{{ settings.social_fancy }}" class="Link Link--primary" target="_blank" rel="noopener" aria-label="Fancy">
+        <span class="Icon-Wrapper--clickable">{%- include 'icon' with 'fancy' -%}</span>
+      </a>
+    </li>
+
+    {% assign social_media_count = social_media_count | plus: 1 %}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- assign spacing_to_use = spacing -%}
+
+{%- if spacing == 'large' and social_media_count > 6 -%}
+  {%- assign spacing_to_use = 'small' -%}
+{%- endif -%}
+
+{%- if social_media_count > 0 -%}
+  <ul class="{{ class }} HorizontalList {% if spacing %}HorizontalList--spacing{{ spacing | capitalize }}{% endif %}">
+    {{ social_media }}
+  </ul>
+{%- endif -%}

@@ -1,0 +1,100 @@
+<script defer="defer">
+  function createCookie(name,value,hours) {
+    if (hours) {
+      var date = new Date();
+      date.setTime(date.getTime()+(hours*3600*1000));
+      var expires = "; expires="+date.toUTCString();
+    } else {
+      var expires = "";
+    }
+    
+    document.cookie = name+"="+value+expires+"; path=/";
+  }
+   function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+  }
+  
+  function deleteCookie(name) {
+    createCookie(name, '', -1);
+  }
+  
+  var cartQualifies = false;
+  
+  $(document).ready(function() {
+    var freeGiftModalCookie = readCookie('free-gift-prompted');
+    var freeGiftCookie = readCookie('free-gift-added');
+    var cookieExpiry = parseInt({{ settings.plus_free_gift_cookie_expiry }});
+    
+    // Initialize free gift modal
+    $('#plus-free-gift__trigger').magnificPopup({
+      callbacks: {
+        beforeClose : function() {
+          createCookie('free-gift-prompted', true, cookieExpiry);
+        }
+      }
+    });
+    
+    if (cartQualifies) {
+      // If we haven't added a gift product, show the free gift banner
+      if (!freeGiftCookie) {
+        $('.plus-free-gift-modal__cart-trigger').css('display', 'block');
+      }
+      
+      // If we haven't seen the modal before, show it
+      if (!freeGiftModalCookie) {
+        $('#plus-free-gift__trigger').trigger('click');
+      }
+    }
+    
+    //Open the modal if the cart banner is clicked
+    $('.plus-free-gift-modal__cart-trigger a').on('click', function(evt) {
+      evt.preventDefault();
+      $('#plus-free-gift__trigger').trigger('click');
+    });
+    
+    // Update the variant id on modal select change
+    $('.plus-free-gift-modal__variant-select').on('change', function() {
+      var variant_id = $(this).val();
+      $(this).closest('.plus-free-gift-modal__cart-form').attr('data-variant-id', variant_id);
+    });
+    
+    // If the customer clicks "Cancel", close the modal
+    $('#plus-free-gift-modal .plus-free-gift-modal__cancel').click(function() {
+      $.magnificPopup.close();
+    });
+    
+    // Add item to cart
+    $('.plus-free-gift-modal__add-to-cart').on('click', function(evt) {    
+      var variant_id = $(this).closest('.plus-free-gift-modal__cart-form').attr('data-variant-id');
+      var quantity = 1;
+      
+      jQuery.ajax({
+        type: 'POST',
+        url: '/cart/add.js',
+        data: 'quantity=' + quantity + '&id=' + variant_id,
+        dataType: 'json',
+        success: function(line_item) {
+          // Create cookies so the modal/banner don't show once they've added an item
+          createCookie('free-gift-prompted', true, cookieExpiry);
+          createCookie('free-gift-added', true, cookieExpiry);
+          
+          // Close the modal and refresh the page to show new item in the cart
+          $.magnificPopup.close();
+          location.reload();
+        },
+        error: function(XMLHttpRequest, textStatus) {
+          Shopify.onError(XMLHttpRequest, textStatus);
+        }
+      });
+      
+      evt.stopPropogation();
+    });
+  });
+</script>   

@@ -1,0 +1,411 @@
+{% layout none %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+
+  <title>Checkout queue - {{ shop.name }}</title>
+
+  {% assign loaderBarCount = 7 %}
+  {% assign loaderTiming = '2.9s' %}
+
+  <style type="text/css">
+    html,
+    body,
+    .container,
+    .content-wrap {
+      height: 100%;
+    }
+
+    body {
+      color: #777;
+      font-family: Helvetica Neue, sans-serif;
+      font-size: 14px;
+      line-height: 1.3em;
+      margin: 0;
+      text-align: center;
+    }
+
+    .container {
+      margin: 0 auto;
+      max-width: 340px;
+      padding: 0 30px;
+    }
+
+    .content-wrap {
+      display: table;
+      width: 100%;
+    }
+
+    .content-wrap__inner {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    h1 {
+      color: #333;
+      margin: 2em 0 1.5em;
+      font-size: 1.3em;
+      font-weight: 400;
+    }
+
+    p {
+      margin: 0 0 1.5em;
+      line-height: 1.5em;
+    }
+
+    .emphasis {
+      color: #555;
+      font-weight: bold;
+    }
+
+    .loading {
+      height: 52px;
+      margin: 0 auto;
+      width: {{ loaderBarCount | times: 20 | plus: 5 }}px;
+    }
+
+    .loading__bar {
+      -webkit-animation: loading-bar cubic-bezier(.25, .1, .25, 1) {{ loaderTiming }} infinite;
+      -moz-animation: loading-bar cubic-bezier(.25, .1, .25, 1) {{ loaderTiming }} infinite;
+      -o-animation: loading-bar cubic-bezier(.25, .1, .25, 1) {{ loaderTiming }} infinite;
+      animation: loading-bar cubic-bezier(.25, .1, .25, 1) {{ loaderTiming }} infinite;
+      background: #49AFEA;
+      border-radius: 8px;
+      float: left;
+      height: 100%;
+      margin-right: 15px;
+      width: 5px;
+    }
+
+    .loading__bar:first-child {
+      -webkit-animation: loading-bar--first cubic-bezier(.25, .1, .25, 1) {{ loaderTiming }} infinite;
+      -moz-animation: loading-bar--first cubic-bezier(.25, .1, .25, 1) {{ loaderTiming }} infinite;
+      -o-animation: loading-bar--first cubic-bezier(.25, .1, .25, 1) {{ loaderTiming }} infinite;
+      animation: loading-bar--first cubic-bezier(.25, .1, .25, 1) {{ loaderTiming }} infinite;
+      opacity: 0;
+    }
+
+    .loading__bar:last-child {
+      -webkit-animation: loading-bar--last ease-in-out {{ loaderTiming }} infinite;
+      -moz-animation: loading-bar--last ease-in-out {{ loaderTiming }} infinite;
+      -o-animation: loading-bar--last ease-in-out {{ loaderTiming }} infinite;
+      animation: loading-bar--last ease-in-out {{ loaderTiming }} infinite;
+    }
+
+    @-webkit-keyframes loading-bar {
+      0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      85% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      100% {
+        -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+        transform: translateX(20px);
+      }
+    }
+
+    @-webkit-keyframes loading-bar--first {
+      0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      85% {
+        opacity: 0;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      100% {
+        opacity: 1;
+        -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+        transform: translateX(20px);
+      }
+    }
+
+    @-webkit-keyframes loading-bar--last {
+      0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      75% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      85% {
+        opacity: 0;
+        -webkit-transform: translateX(30px);
+        -ms-transform: translateX(30px);
+        transform: translateX(30px);
+      }
+
+      100% {
+        opacity: 0;
+        -webkit-transform: translateX(30px);
+        -ms-transform: translateX(30px);
+        transform: translateX(30px);
+      }
+    }
+
+    @-moz-keyframes loading-bar {
+      0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      85% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      100% {
+        -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+        transform: translateX(20px);
+      }
+    }
+
+    @-moz-keyframes loading-bar--first {
+      0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      85% {
+        opacity: 0;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      100% {
+        opacity: 1;
+        -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+        transform: translateX(20px);
+      }
+    }
+
+    @-moz-keyframes loading-bar--last {
+      0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      75% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      85% {
+        opacity: 0;
+        -webkit-transform: translateX(30px);
+        -ms-transform: translateX(30px);
+        transform: translateX(30px);
+      }
+
+      100% {
+        opacity: 0;
+        -webkit-transform: translateX(30px);
+        -ms-transform: translateX(30px);
+        transform: translateX(30px);
+      }
+    }
+
+    @-o-keyframes loading-bar {
+      0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      85% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      100% {
+        -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+        transform: translateX(20px);
+      }
+    }
+
+    @-o-keyframes loading-bar--first {
+      0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      85% {
+        opacity: 0;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      100% {
+        opacity: 1;
+        -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+        transform: translateX(20px);
+      }
+    }
+
+    @-o-keyframes loading-bar--last {
+      0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      75% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      85% {
+        opacity: 0;
+        -webkit-transform: translateX(30px);
+        -ms-transform: translateX(30px);
+        transform: translateX(30px);
+      }
+
+      100% {
+        opacity: 0;
+        -webkit-transform: translateX(30px);
+        -ms-transform: translateX(30px);
+        transform: translateX(30px);
+      }
+    }
+
+    @keyframes loading-bar {
+      0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      85% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      100% {
+        -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+        transform: translateX(20px);
+      }
+    }
+
+    @keyframes loading-bar--first {
+      0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      85% {
+        opacity: 0;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      100% {
+        opacity: 1;
+        -webkit-transform: translateX(20px);
+        -ms-transform: translateX(20px);
+        transform: translateX(20px);
+      }
+    }
+
+    @keyframes loading-bar--last {
+      0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      75% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+      }
+
+      85% {
+        opacity: 0;
+        -webkit-transform: translateX(30px);
+        -ms-transform: translateX(30px);
+        transform: translateX(30px);
+      }
+
+      100% {
+        opacity: 0;
+        -webkit-transform: translateX(30px);
+        -ms-transform: translateX(30px);
+        transform: translateX(30px);
+      }
+    }
+  </style>
+
+  {{ queue_script }}
+</head>
+<body>
+<div class="container">
+  <div class="content-wrap">
+    <div class="content-wrap__inner">
+
+      <div class="loading">
+        {% for i in (1..loaderBarCount) %}
+          <div class="loading__bar loading__bar--{{ i }}"></div>
+        {% endfor %}
+      </div>
+
+      <h1>Einen kleinen Augenblick bitte, du bist gleich an der Reihe um deine Bestellung abzuschließen.</h1>
+
+      <p>
+        Aufgrund der hohen Nachfrage verzögert sich der Bestellvorgang ein wenig.<br>
+        Bitte warte wenige Minuten, du wirst umgehend zur Kasse weitergeleitet.
+      </p>
+
+      <p class="emphasis">
+        Bitte aktualisiere diese Seite nicht, sonst verlierst du deinen Platz.
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>

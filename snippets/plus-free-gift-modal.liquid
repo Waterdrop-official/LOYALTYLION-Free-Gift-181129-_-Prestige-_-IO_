@@ -1,0 +1,39 @@
+<div class="plus-free-gift-modal__wrapper" style="display: none">
+  <a href="#plus-free-gift-modal" id="plus-free-gift__trigger"></a>
+    
+  <div id="plus-free-gift-modal">
+    <div class="plus-free-gift-modal__content">
+      <h2 class="title">{{ 'plus.cart.free_gift_title' | t }}</h2>
+      <div class="plus-free-gift-modal__cancel-wrapper">
+        <span class="plus-free-gift-modal__cancel">{{ 'plus.cart.free_gift_cancel' | t }}</span>
+      </div>
+      <div class="plus-free-gift-modal__products-wrapper">
+        <ul class="plus-free-gift-modal__products">
+          {% if type == 'collection' %}
+            {% for block in section.blocks %}
+              {% if block.type == 'gift-collection' %}
+                {% assign collection = collections[block.settings.gift_collection] %}
+                {% assign grid_width = block.settings.gift_collection_grid_width %}
+                {% assign grid_item_width = 'plus-one_' | append: grid_width %}
+                
+                {% for product in collection.products %}
+                  {% include 'plus-product-grid-item' with grid_item_width %}
+                {% endfor %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            {% for block in section.blocks %}
+              {% if block.type == 'gift-product' %}
+                {% assign product = all_products[block.settings.gift_product] %}
+                {% assign grid_item_width = 'plus_one_whole' %}
+                {% include 'plus-product-grid-item' with grid_item_width %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>   
