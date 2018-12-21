@@ -476,5 +476,20 @@
       "free_gift_banner_text": "You qualify for a Free Gift!",
       "free_gift_banner_choose": "Choose"
     }
+  },
+  "loyaltylion": {
+    "you_have_points_html": "Du hast bereits <span data-lion-points></span> Punkte",
+    "earn_points_heading": "Verdiene Punkte",
+    "earn_points_description": "Es gibt viele Möglichkeiten Punkte zu sammeln. Im nu kannst du dir ein Produkt verdienen",
+    "rewards_heading": "Deine Belohnungen",
+    "rewards_description": "Es gibt viele Möglichkeiten Punkte zu sammeln. Im nu kannst du dir ein Produkt verdienen",
+    "tiers_heading": "watedrop™-VIP-club!",
+    "tiers_description": "Waterdrop™ VIPs sind Teil unserer waterworld, in der wir mit Künstlern neue Welten um Botanicals und Wasser erschaffen.  Unsere VIPs erhalten limitierte und spezielle Packages bevorzugt.",
+    "tiers_benefits_heading": "Die Vorzüge",
+    "your_activity_heading": "Deine Aktivitäten",
+    "your_activity_description": "Hier findest du eine Auflistung aller Punkte die du bis jetzt gesammelt hast",
+    "vip_member_heading": "Waterdrop™ Abo Modell",
+    "vip_member_description": "Wenn du dich für ein Abomodell entscheidest wirst du automatische VIP member und geniesst auch alle Vorteile, zb sammelst du 3mal so viele Punkte pro ausgegenen Euro",
+    "vip_member_link": "Jetzt Abo abschliessen"
   }
 }

@@ -1,0 +1,431 @@
+/** @prettier */
+
+$green: #003d3f;
+$green-dark: #003d3f;
+$aqua: #65b1ac;
+$grey1: #fafafa;
+$grey2: #575756;
+
+.LoyaltySectionHeader {
+  text-align: center;
+}
+
+.LoyaltySectionHeader__Heading {
+  font-size: 30px;
+  color: $green;
+
+  span[data-lion-points] {
+    color: $aqua;
+  }
+}
+
+.LoyaltySectionHeader__Description {
+  font-size: 16px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.LoyaltySectionHeader__Description--long {
+  max-width: 650px;
+}
+
+.LoyaltySectionHeader__SubHeading {
+  font-size: 20px;
+  margin-bottom: 0;
+}
+
+.LoyaltySection {
+  padding: 80px 0 60px;
+}
+
+.LoyaltySection--grey {
+  background: $grey1;
+}
+
+.LoyaltyVipMemberBanner {
+  background: url('{{ "loyalty-vip-banner-background.jpg" | asset_url }}')
+    no-repeat 0 0;
+  background-size: cover;
+  background-position-x: 40%;
+  height: 620px;
+  width: 100%;
+}
+
+.LoyaltyVipMemberBanner__Container {
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.LoyaltyVipMemberBanner__Content {
+  width: 560px;
+  text-align: center;
+  padding: 0 15px;
+}
+
+.LoyaltyVipMemberBanner__Heading {
+  font-size: 40px;
+  color: $green;
+  margin-bottom: 15px;
+}
+
+.LoyaltyVipMemberBanner__Description {
+  font-size: 19px;
+  color: $grey2;
+  margin-bottom: 50px;
+}
+
+.LoyaltyVipMemberBanner__Link {
+  // did not add border radius here as the "wipe" transition on `Button` class
+  // does not work unless button is square
+  // border-radius: 50px;
+}
+
+/* LoyaltyLion component styles */
+
+.LoyaltyLionPage {
+  .lion-action-button {
+    background-color: $aqua;
+    text-transform: uppercase;
+    font-family: "Gotham Book", sans-serif;
+    letter-spacing: 2px;
+    font-size: 12px;
+    border-radius: 50px;
+    padding: 7px 20px;
+
+    &:hover {
+      background-color: $aqua;
+    }
+
+    &:active {
+      box-shadow: none;
+    }
+  }
+
+  /* Earn points */
+
+  .lion-rules-list {
+    margin: 40px auto 0 auto;
+    max-width: 1200px;
+    display: block;
+    overflow: hidden;
+  }
+
+  .lion-rule-item__button {
+    min-width: 220px;
+  }
+
+  .lion-rule-item {
+    width: 33.333%;
+    float: left;
+    height: 250px;
+    padding: 7px;
+    text-align: center;
+  }
+
+  .lion-rule-item__content {
+    box-shadow: none;
+    border: 1px solid rgba($aqua, 0.5);
+    border-radius: 0;
+    padding-top: 28px;
+  }
+
+  .lion-rule-item:hover .lion-rule-item__content {
+    border: 1px solid $aqua;
+  }
+
+  .lion-rule-item__title {
+    font-size: 24px;
+    color: $green-dark;
+    padding: 10px 5px 1px 5px;
+  }
+
+  .lion-rule-item__points {
+    font-size: 86%;
+  }
+
+  .lion-rule-item__points .value {
+    margin-right: 0;
+  }
+
+  .lion-rule-item__points .value,
+  .lion-rule-item__points .text {
+    color: $aqua;
+  }
+
+  .lion-rule-item--purchase {
+    height: 500px;
+    float: left;
+  }
+
+  .lion-rule-item--purchase .lion-rule-item__content {
+    background: url('{{ "loyalty-purchase-ladies.jpg" | asset_url }}');
+    background-size: cover;
+    justify-content: flex-end;
+    padding-bottom: 30px;
+  }
+
+  .lion-rule-item--purchase .lion-rule-item__content > * {
+    z-index: 2;
+  }
+
+  // add a transparent white box above the bottom half of the image so the text
+  // above it is more readable
+  .lion-rule-item--purchase .lion-rule-item__content:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 250px;
+    background: rgba(#fff, 0.35);
+    z-index: 1;
+    bottom: 0;
+  }
+
+  .lion-rule-item--purchase .lion-rule-item__icon {
+    display: none;
+  }
+
+  .lion-rule-item--purchase .lion-rule-item__title {
+    font-size: 26px;
+  }
+
+  .lion-rule-item--purchase .lion-rule-item__points .text {
+    font-weight: bold;
+  }
+
+  .lion-icon__rule--birthday {
+    background-image: url('{{"loyalty-icon-birthday-cake.svg"|asset_url}}');
+    background-size: contain;
+  }
+
+  .lion-icon__rule--instagram-follow {
+    background-image: url('{{"loyalty-icon-instagram.svg"|asset_url}}');
+    background-size: contain;
+  }
+
+  .lion-icon__rule--newsletter-signup {
+    background-image: url('{{"loyalty-icon-envelope.svg"|asset_url}}');
+    background-size: contain;
+  }
+
+  .lion-icon__rule--facebook-like {
+    background-image: url('{{"loyalty-icon-facebook.svg"|asset_url}}');
+    background-size: contain;
+  }
+
+  .lion-icon__rule--pageview {
+    background-image: url('{{"loyalty-icon-visit.svg"|asset_url}}');
+    background-size: contain;
+  }
+
+  .lion-icon__rule--referral {
+    background-image: url('{{"loyalty-icon-megaphone.svg"|asset_url}}');
+    background-size: contain;
+  }
+
+  .lion-icon__rule--shopify-review {
+    background-image: url('{{"loyalty-icon-stars.svg"|asset_url}}');
+    background-size: contain;
+    width: 120px;
+  }
+
+  /* Rewards */
+
+  .lion-rewards-list {
+    margin: 40px auto 0 auto;
+    max-width: 1200px;
+  }
+
+  .lion-reward-item {
+    padding: 7px;
+  }
+
+  .lion-reward-item__content {
+    border-radius: 0;
+    box-shadow: none;
+    background: $grey1;
+    padding: 0;
+  }
+
+  .lion-reward-item__product-image {
+    order: -1;
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .lion-reward-item__title {
+    font-size: 24px;
+    color: $green-dark;
+    font-weight: normal;
+  }
+
+  .lion-reward-item__links {
+    display: none;
+  }
+
+  .lion-reward-item__meta {
+    margin-top: 1px;
+    margin-bottom: 25px;
+    font-size: 86%;
+    color: $aqua;
+  }
+
+  .lion-reward-item__cost {
+    color: $aqua;
+  }
+
+  .lion-reward-item__redeem-button {
+    background: white;
+    color: $green-dark;
+    margin: 0 25px 25px 25px;
+    overflow: hidden;
+    padding: 10px 0;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  .lion-reward-item__redeem-button--disabled {
+    pointer-events: none;
+  }
+
+  .lion-reward-item__fill {
+    background: $green-dark;
+    height: 3px;
+  }
+
+  /* Tier overview */
+
+  .lion-tier-overview {
+    margin: 50px auto 80px auto;
+    max-width: 1200px;
+  }
+
+  .lion-tier-box {
+    border: 1px solid rgba($aqua, 0.7);
+    background-color: #f5f8f8;
+    min-height: 235px;
+  }
+
+  .lion-tier-box .lion-tier-benefits-list {
+    // hide list of benefits as showing the tier benefit component below
+    display: none;
+  }
+
+  .lion-tier-box__purchase-rule {
+    flex-grow: 1;
+  }
+
+  .lion-tier-box__header {
+    padding-top: 25px;
+  }
+
+  .lion-tier-box__title {
+    margin-bottom: 8px;
+    font-size: 30px;
+    color: $green-dark;
+  }
+
+  .lion-tier-box__sub-title {
+    font-size: 14px;
+    color: $aqua;
+  }
+
+  .lion-tier-box__footer {
+    background-color: $aqua;
+    color: white;
+  }
+
+  .lion-tier-box__footer--current {
+    padding: 15px;
+  }
+
+  .lion-tier-box__you-are-here {
+    font-weight: normal;
+  }
+
+  /* Tier benefits */
+
+  .lion-tier-benefits-compare {
+    margin: 20px auto 0 auto;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .lion-tier-benefits-compare__benefit-text {
+    text-align: left;
+    color: $green-dark;
+    font-size: 18px;
+    padding-right: 60px;
+  }
+
+  .lion-tier-benefits-compare th:first-child {
+    border-right: none;
+  }
+
+  .lion-tier-benefits-compare td:first-child {
+    border-right: 1px solid rgba($green-dark, 0.7);
+  }
+
+  .lion-tier-compare__header-cell--tier-0,
+  .lion-tier-compare__header-cell--tier-1,
+  .lion-tier-compare__header-cell--tier-2 {
+    width: 100px;
+  }
+
+  .lion-tier-benefits-compare th:nth-child(2),
+  .lion-tier-benefits-compare td:nth-child(2) {
+    padding-left: 60px;
+  }
+
+  /* Activity/history table */
+
+  .lion-history-table {
+    margin: 60px auto 0 auto;
+    max-width: 1200px;
+  }
+}
+
+/* Other injected loyaltylion components (e.g. modals) */
+
+#loyaltylion {
+  .lion-modal {
+    box-shadow: 0 1px 9px rgba(0, 0, 0, 0.25);
+    border-radius: 0;
+    max-width: 500px;
+    font-family: inherit;
+  }
+
+  .lion-modal__header {
+    background: white;
+  }
+
+  .lion-modal__title {
+    color: $green;
+    padding: 15px;
+    font-size: 21px;
+  }
+
+  .lion-modal__content {
+    color: #111;
+    font-size: 17px;
+    // background: $grey1;
+  }
+
+  // referral popup
+
+  .lion-referral-widget-modal {
+    font-family: inherit;
+    box-shadow: 0 1px 9px rgba(0, 0, 0, 0.25);
+    border-radius: 0;
+  }
+
+  .lion-referral-share-button {
+    font-size: 14px;
+  }
+}

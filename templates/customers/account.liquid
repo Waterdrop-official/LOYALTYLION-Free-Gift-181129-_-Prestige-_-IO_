@@ -7,9 +7,13 @@
   <header class="PageHeader">
     <a href="/account/logout" class="PageHeader__Back Heading Text--subdued Link Link--primary u-h7">{{ 'customer.account.logout' | t }}</a>
 
-    <div class="SectionHeader">
-      <h1 class="SectionHeader__Heading Heading u-h1">{{ 'customer.account.title' | t }}</h1>
-      <p class="SectionHeader__Description">{{ 'customer.account.welcome' | t: first_name: customer.first_name }}</p>
+    <div class="LoyaltySectionHeader">
+      <p class="LoyaltySectionHeader__SubHeading">
+        {{ 'customer.account.welcome' | t: first_name: customer.first_name }}
+      </p>
+      <h1 class="LoyaltySectionHeader__Heading">
+        {{ "loyaltylion.you_have_points_html" | t }}
+      </h1>
     </div>
   </header>
 
@@ -94,3 +98,6 @@
     </div>
   </div>
 </div>
+
+{% section 'loyaltylion-page' %}
+
