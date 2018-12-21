@@ -124,6 +124,14 @@ $grey2: #575756;
     height: 250px;
     padding: 7px;
     text-align: center;
+
+    @media (max-width: 900px) {
+      width: 50%;
+    }
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
   }
 
   .lion-rule-item__content {
@@ -141,6 +149,17 @@ $grey2: #575756;
     font-size: 24px;
     color: $green-dark;
     padding: 10px 5px 1px 5px;
+
+    @media (max-width: 750px) {
+      font-size: 20px;
+    }
+  }
+
+  .lion-rule-item__icon {
+    @media (max-width: 600px) {
+      width: 45px;
+      height: 45px;
+    }
   }
 
   .lion-rule-item__points {
@@ -362,6 +381,15 @@ $grey2: #575756;
     color: $green-dark;
     font-size: 18px;
     padding-right: 60px;
+
+    @media (max-width: 600px) {
+      padding-right: 10px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 450px) {
+      font-size: 11px;
+    }
   }
 
   .lion-tier-benefits-compare th:first-child {
@@ -381,6 +409,19 @@ $grey2: #575756;
   .lion-tier-benefits-compare th:nth-child(2),
   .lion-tier-benefits-compare td:nth-child(2) {
     padding-left: 60px;
+  }
+
+  @media (max-width: 600px) {
+    .lion-tier-compare__header-cell--tier-0,
+    .lion-tier-compare__header-cell--tier-1,
+    .lion-tier-compare__header-cell--tier-2 {
+      width: auto;
+    }
+
+    .lion-tier-benefits-compare th:nth-child(2),
+    .lion-tier-benefits-compare td:nth-child(2) {
+      padding-left: 10px;
+    }
   }
 
   /* Activity/history table */
